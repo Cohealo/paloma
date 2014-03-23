@@ -17,11 +17,16 @@
 
       var request = <%= request.to_json.html_safe %>;
 
+      var paloma_already_hit = false;
+      
       $(document).ready(function(){
-        Paloma.engine.request(
-          request['resource'],
-          request['action'],
-          request['params']);
+        if (paloma_already_hit === false) {
+          paloma_already_hit = true;
+          Paloma.engine.request(
+            request['resource'],
+            request['action'],
+            request['params']);
+        }
       });
 
     })();
